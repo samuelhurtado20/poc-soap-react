@@ -2,7 +2,7 @@
 import soapRequest from "./helper/soapRequest";
 
 function App() {
-    const url = "https://localhost:44343/DemoSoap.asmx";
+    const url = "http://localhost:80/DemoSoap.asmx";
     const sampleHeaders = {
         "Content-Type": "text/xml; charset=utf-8"
     };
@@ -17,7 +17,7 @@ function App() {
                     </soap:Envelope>`;
 
     async function makeRequest() {
-        const { response } = await soapRequest({ url: url, headers: sampleHeaders, xml: xml, timeout: 10000 });
+        const { response } = await soapRequest({ url: url, headers: sampleHeaders, xml: xml, timeout: 100000 });
         const { headers, body, statusCode } = response;
         console.log(headers);
         console.log(body);
@@ -54,7 +54,7 @@ function App() {
 
     const callSOAPlocal = () => {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "https://localhost:44343/DemoSoap.asmx", true);
+        xmlhttp.open("POST", "http://localhost/DemoSoap.asmx?op=login", true);
         var sr =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
